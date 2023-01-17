@@ -11,7 +11,7 @@
 import React from "react";
 import BottomMainNavigation from "./src/navigation/BottomMainNavigation";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ModelVideos from "./src/screens/homeMainNavScreens/feeds/ModelVideos";
+import ModelVideos from "./src/screens/homeMainNavScreens/feeds/ModelVideos/ModelVideos";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { NavigationContainer } from "@react-navigation/native";
 import { globalStyle } from "./src/styles";

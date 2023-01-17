@@ -5,8 +5,8 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Zocial from "react-native-vector-icons/Zocial";
 import React from "react";
-import Container from "../../../components/Container";
-import frog from "../../../images/frog.jpg";
+import Container from "../../../../components/Container";
+import frog from "../../../../images/frog.jpg";
 
 type Props = {};
 

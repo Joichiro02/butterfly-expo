@@ -36,7 +36,6 @@ const Banner = () => {
         loop={true}
         autoplay={true}
         enableSnap={true}
-        enableMomentum={false}
       />
       <Pagination
         dotsLength={data.length}
