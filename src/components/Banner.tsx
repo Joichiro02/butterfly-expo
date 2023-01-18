@@ -1,72 +1,45 @@
-import { Dimensions, StyleSheet, Text, View } from "react-native";
-//@ts-ignore
-// import Carousel, { Pagination } from "@vandrei977/react-native-snap-carousel";
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from "./CarouselCardItem";
 import React, { useEffect, useRef, useState } from "react";
 import { data } from "../data/data";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
-
 import Carousel from "react-native-reanimated-carousel";
-import Swipeable from "react-native-gesture-handler/Swipeable";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 type Props = {};
+const { width, height } = Dimensions.get("window");
 
 const Banner = () => {
   const [index, setIndex] = useState(0);
   const isCarousel = useRef(null);
 
-  const width = Dimensions.get("window").width;
-
-  useEffect(() => {
-    //   setTimeout(() => {
-    //     if (index === data.length - 1) {
-    //       isCarousel?.current?.snapToItem(0);
-    //     } else {
-    //       isCarousel?.current?.snapToItem(index + 1);
-    //     }
-    //   }, 2000);
-    // console.log("@@@", page.current);
-  }, [index]);
+  const handlePrev = () => {
+    isCarousel?.current.prev();
+    // setIndex(index - 1);
+  };
+  const handleNext = () => {
+    isCarousel?.current.next();
+    // setIndex(index + 1);
+  };
   return (
     <GestureHandlerRootView>
       <View style={styles.container}>
-        {/* <Carousel
-          layout="stack"
-          layoutCardOffset={9}
-          ref={isCarousel}
-          data={data}
-          renderItem={CarouselCardItem}
-          sliderWidth={Math.round(SLIDER_WIDTH)}
-          itemWidth={ITEM_WIDTH}
-          onSnapToItem={(index: number) => setIndex(index)}
-          useScrollView={true}
-          loopClonesPerSide={data.length}
-          loop={true}
-          autoplay={true}
-          enableSnap={true}
-          removeClippedSubviews={false}
-          horizontal={true}
-          firstItem={data.length}
-          autoplayDelay={100}
-          autoplayInterval={2000}
+        <AntDesign
+          name="leftcircleo"
+          size={30}
+          style={styles.leftIcon}
+          onPress={handlePrev}
         />
-        <Pagination
-          dotsLength={data.length}
-          activeDotIndex={index}
-          carouselRef={isCarousel}
-          dotStyle={{
-            width: 10,
-            height: 10,
-            borderRadius: 5,
-            marginHorizontal: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.92)",
-          }}
-          inactiveDotOpacity={0.4}
-          inactiveDotScale={0.6}
-          tappableDots={true}
-        /> */}
         <Carousel
+          ref={isCarousel}
           loop
           width={width}
           height={width / 2}
@@ -78,6 +51,12 @@ const Banner = () => {
           renderItem={CarouselCardItem}
           pagingEnabled={true}
         />
+        <AntDesign
+          name="rightcircleo"
+          size={30}
+          style={styles.rightIcon}
+          onPress={handleNext}
+        />
       </View>
     </GestureHandlerRootView>
   );
@@ -85,8 +64,25 @@ const Banner = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 250,
+    height: 200,
     backgroundColor: "cyan",
+    position: "relative",
+    flexDirection: "row",
+    width: width,
+  },
+  leftIcon: {
+    position: "absolute",
+    left: 20,
+    top: "50%",
+    zIndex: 10,
+    transform: [{ translateY: -15 }],
+  },
+  rightIcon: {
+    position: "absolute",
+    right: 20,
+    top: "50%",
+    zIndex: 10,
+    transform: [{ translateY: -15 }],
   },
 });
 
