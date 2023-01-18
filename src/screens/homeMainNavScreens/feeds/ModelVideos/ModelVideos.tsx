@@ -1,4 +1,12 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Button,
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -7,15 +15,39 @@ import Zocial from "react-native-vector-icons/Zocial";
 import React from "react";
 import Container from "../../../../components/Container";
 import frog from "../../../../images/frog.jpg";
+import { Video, AVPlaybackStatus } from "expo-av";
 
 type Props = {};
 
+const { width, height } = Dimensions.get("window");
+
 const ModelVideos = (props: Props) => {
+  const video = React.useRef(null);
+  const [status, setStatus] = React.useState({});
   return (
     <Container>
       <View style={styles.videoContent}>
-        <TouchableOpacity></TouchableOpacity>
-        <Image source={frog} style={styles.video} />
+        <Video
+          ref={video}
+          style={styles.video}
+          source={{
+            uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+          }}
+          useNativeControls
+          resizeMode="contain"
+          isLooping
+          onPlaybackStatusUpdate={(status) => setStatus(() => status)}
+        />
+        {/* <View style={styles.buttons}>
+          <Button
+            title={status.isPlaying ? "Pause" : "Play"}
+            onPress={() =>
+              status.isPlaying
+                ? video.current.pauseAsync()
+                : video.current.playAsync()
+            }
+          />
+        </View> */}
       </View>
       <View>
         <Text style={styles.title}>
@@ -102,10 +134,7 @@ export default ModelVideos;
 
 const styles = StyleSheet.create({
   videoContent: {
-    height: 250,
-  },
-  video: {
-    height: "100%",
+    height: 200,
   },
   title: {
     color: "#fff",
@@ -155,6 +184,16 @@ const styles = StyleSheet.create({
   },
   buttonItem: {
     flexDirection: "row",
+    alignItems: "center",
+  },
+  video: {
+    alignSelf: "center",
+    width: width,
+    height: 200,
+  },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
   },
 });
