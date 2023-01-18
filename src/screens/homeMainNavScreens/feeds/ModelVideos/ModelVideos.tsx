@@ -34,6 +34,7 @@ const ModelVideos = (props: Props) => {
             uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
           }}
           useNativeControls
+          //@ts-ignore
           resizeMode="contain"
           isLooping
           onPlaybackStatusUpdate={(status) => setStatus(() => status)}

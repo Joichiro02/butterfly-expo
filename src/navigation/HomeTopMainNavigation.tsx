@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Feeds from "../screens/homeMainNavScreens/feeds";
@@ -12,6 +12,7 @@ import { globalStyle } from "../styles/index";
 const MainTab = createMaterialTopTabNavigator();
 
 const HomeTopMainNavigation = () => {
+  const [swipe, setSwipe] = useState(false);
   return (
     <>
       <MainTab.Navigator
@@ -40,11 +41,17 @@ const HomeTopMainNavigation = () => {
           animationEnabled: false,
         }}
       >
-        <MainTab.Screen name="关注" component={Feeds} />
-        <MainTab.Screen name="首页" component={Home} />
+        <MainTab.Screen name="关注" options={{ swipeEnabled: swipe }}>
+          {(props) => <Feeds {...props} setSwipe={setSwipe} />}
+        </MainTab.Screen>
+        <MainTab.Screen name="首页" options={{ swipeEnabled: swipe }}>
+          {(props) => <Home {...props} swipe={swipe} setSwipe={setSwipe} />}
+        </MainTab.Screen>
         <MainTab.Screen name="动态" component={Moment} />
         <MainTab.Screen name="约会" component={Photography} />
-        <MainTab.Screen name="写真" component={Date} />
+        <MainTab.Screen name="写真" options={{ swipeEnabled: swipe }}>
+          {(props) => <Date {...props} setSwipe={setSwipe} />}
+        </MainTab.Screen>
       </MainTab.Navigator>
       <View style={styles.searchContainer}>
         <Ionicons name="search" size={20} color="#fff" />

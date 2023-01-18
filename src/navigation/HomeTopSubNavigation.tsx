@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Selections from "../screens/homeSubNavScreens/Selections";
 import Latest from "../screens/homeSubNavScreens/Latest";
@@ -14,7 +14,7 @@ import { globalStyle } from "../styles/index";
 
 const SubMenuTab = createMaterialTopTabNavigator();
 
-const HomeTopSubNavigation = () => {
+const HomeTopSubNavigation = ({ swipe, setSwipe }: any) => {
   return (
     <SubMenuTab.Navigator
       initialRouteName="精选"
@@ -43,7 +43,9 @@ const HomeTopSubNavigation = () => {
         animationEnabled: false,
       }}
     >
-      <SubMenuTab.Screen name="精选" component={Selections} />
+      <SubMenuTab.Screen name="精选" options={{ swipeEnabled: swipe }}>
+        {(props) => <Selections {...props} setSwipe={setSwipe} />}
+      </SubMenuTab.Screen>
       <SubMenuTab.Screen name="最新" component={Latest} />
       <SubMenuTab.Screen name="原创" component={Original} />
       <SubMenuTab.Screen name="自制" component={HomeMade} />

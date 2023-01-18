@@ -12,7 +12,7 @@ import Swipeable from "react-native-gesture-handler/Swipeable";
 
 type Props = {};
 
-const Banner = () => {
+const Banner = ({ setSwipe }: any) => {
   const [index, setIndex] = useState(0);
   const isCarousel = useRef(null);
 
@@ -29,8 +29,11 @@ const Banner = () => {
     // console.log("@@@", page.current);
   }, [index]);
   return (
-    <GestureHandlerRootView>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <GestureHandlerRootView
+        onTouchStart={() => setSwipe(false)}
+        onTouchMove={() => setSwipe(false)}
+      >
         {/* <Carousel
           layout="stack"
           layoutCardOffset={9}
@@ -78,8 +81,13 @@ const Banner = () => {
           renderItem={CarouselCardItem}
           pagingEnabled={true}
         />
-      </View>
-    </GestureHandlerRootView>
+      </GestureHandlerRootView>
+      <View
+        style={{ backgroundColor: "coral", flex: 1 }}
+        onTouchStart={() => setSwipe(true)}
+        onTouchEnd={() => setSwipe(false)}
+      ></View>
+    </View>
   );
 };
 
@@ -87,6 +95,7 @@ const styles = StyleSheet.create({
   container: {
     height: 250,
     backgroundColor: "cyan",
+    flex: 1,
   },
 });
 

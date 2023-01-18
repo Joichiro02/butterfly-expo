@@ -6,9 +6,13 @@ import { globalStyle } from "../../../styles";
 const sampleData = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
 ];
-const Index = ({ navigation }: any) => {
+const Index = ({ navigation, setSwipe }: any) => {
   return (
-    <View style={styles.container}>
+    <View
+      style={styles.container}
+      onTouchStart={() => setSwipe(true)}
+      onTouchEnd={() => setSwipe(false)}
+    >
       <ScrollView>
         <View style={styles.cardContainer}>
           {sampleData.map((item, index) => (

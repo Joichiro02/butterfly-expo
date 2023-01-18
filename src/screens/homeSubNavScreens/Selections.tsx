@@ -3,10 +3,10 @@ import { StyleSheet, Text, View } from "react-native";
 import Banner from "../../components/Banner";
 import { globalStyle } from "../../styles";
 
-const Selections = () => {
+const Selections = ({ setSwipe }: any) => {
   return (
     <View style={styles.container}>
-      <Banner />
+      <Banner setSwipe={setSwipe} />
     </View>
   );
 };

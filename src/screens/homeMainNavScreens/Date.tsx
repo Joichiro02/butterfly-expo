@@ -1,7 +1,7 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import React from "react";
+import { Text, View } from "react-native";
 
-const Date = () => {
+const Date = ({ setSwipe }: any) => {
   return (
     <View>
       <Text>Date</Text>
