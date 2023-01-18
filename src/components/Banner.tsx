@@ -1,4 +1,10 @@
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 //@ts-ignore
 // import Carousel, { Pagination } from "@vandrei977/react-native-snap-carousel";
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from "./CarouselCardItem";
@@ -82,11 +88,14 @@ const Banner = ({ setSwipe }: any) => {
           pagingEnabled={true}
         />
       </GestureHandlerRootView>
-      <View
-        style={{ backgroundColor: "coral", flex: 1 }}
-        onTouchStart={() => setSwipe(true)}
-        onTouchEnd={() => setSwipe(false)}
-      ></View>
+      <TouchableWithoutFeedback onAccessibilityAction={() => setSwipe(true)}>
+        <View
+          style={{ backgroundColor: "coral", flex: 1 }}
+          // onTouchStart={(e) => setSwipe(true)}
+          // onTouchEnd={() => setSwipe(false)}
+          // onTouchEndCapture={() => setSwipe(true)}
+        ></View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };
