@@ -1,21 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Banner from "../../components/Banner";
+import Banner from "../../components/banner/Banner";
+import Container from "../../components/Container";
 import { globalStyle } from "../../styles";
+import HorizontalSwiperVideos from "../../components/horizontalSwiperVideos";
 
-const Selections = () => {
+const Selections = ({ navigation }: any) => {
   return (
-    <View style={styles.container}>
+    <Container>
       <Banner />
-    </View>
+      <HorizontalSwiperVideos navigation={navigation} />
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: globalStyle.primaryColor,
-  },
-});
 
 export default Selections;

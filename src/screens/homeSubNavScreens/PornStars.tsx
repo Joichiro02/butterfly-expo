@@ -1,11 +1,13 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import React from "react";
+import { Text, View } from "react-native";
+import Banner from "../../components/banner/Banner";
+import Container from "../../components/Container";
 
 const PornStars = () => {
   return (
-    <View>
-      <Text>PornStars</Text>
-    </View>
+    <Container>
+      <Banner />
+    </Container>
   );
 };
 
