@@ -80,7 +80,7 @@ const Banner = () => {
             <FontAwesome
               key={idx}
               name="circle"
-              size={10}
+              size={7}
               style={styles.circle}
               color={index === idx ? globalStyle.secondaryColor : "white"}
             />
