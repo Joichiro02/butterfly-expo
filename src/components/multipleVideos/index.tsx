@@ -49,14 +49,6 @@ const { width } = Dimensions.get("window");
 const index = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
-      <View style={styles.titleContent}>
-        <Text style={styles.title}>Title and Description</Text>
-        <MaterialCommunityIcons
-          name="chevron-triple-right"
-          color={globalStyle.secondaryColor}
-          size={20}
-        />
-      </View>
       <FlatList
         numColumns={2}
         data={images}
@@ -96,22 +88,6 @@ export default index;
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    justifyContent: "center",
-  },
-  titleContent: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 15,
-    width: "100%",
-  },
-  title: {
-    color: "#fff",
-    fontSize: 18,
-    paddingHorizontal: 10,
-    borderLeftColor: globalStyle.secondaryColor,
-    borderLeftWidth: 4,
-    textAlign: "center",
   },
   videoContainer: {
     margin: 5,

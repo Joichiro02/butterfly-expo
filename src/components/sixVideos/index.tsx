@@ -15,30 +15,18 @@ import banner4 from "../../images/banner4.jpg";
 import banner5 from "../../images/banner5.jpg";
 import banner6 from "../../images/banner6.jpg";
 import { FlatList } from "react-native-gesture-handler";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { globalStyle } from "../../styles";
 
 const images = [banner1, banner2, banner3, banner4, banner5, banner6];
 const { width } = Dimensions.get("window");
 
 const index = ({ navigation }: any) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.titleContent}>
-        <Text style={styles.title}>Title and Description</Text>
-        <MaterialCommunityIcons
-          name="chevron-triple-right"
-          color={globalStyle.secondaryColor}
-          size={20}
-        />
-      </View>
-      <FlatList
-        numColumns={2}
-        data={images}
-        renderItem={({ item }) => <Video item={item} navigation={navigation} />}
-        keyExtractor={(item, index) => "" + index}
-      />
-    </View>
+    <FlatList
+      numColumns={2}
+      data={images}
+      renderItem={({ item }) => <Video item={item} navigation={navigation} />}
+      keyExtractor={(item, index) => "" + index}
+    />
   );
 };
 
@@ -69,25 +57,6 @@ const Video = ({ item, navigation }: any) => {
 export default index;
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  titleContent: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 15,
-    width: "100%",
-  },
-  title: {
-    color: "#fff",
-    fontSize: 18,
-    paddingHorizontal: 10,
-    borderLeftColor: globalStyle.secondaryColor,
-    borderLeftWidth: 4,
-    textAlign: "center",
-  },
   videoContainer: {
     margin: 5,
     borderWidth: 1,

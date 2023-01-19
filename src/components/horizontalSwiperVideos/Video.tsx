@@ -44,7 +44,6 @@ export default Video;
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
     borderColor: "#fff",
     borderWidth: 1,
     width: width * 0.7,

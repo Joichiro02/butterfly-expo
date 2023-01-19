@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     position: "relative",
     flexDirection: "row",
     width: width,
+    marginBottom: 15,
   },
   leftIcon: {
     position: "absolute",

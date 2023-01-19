@@ -29,51 +29,16 @@ const data = [
 
 const index = ({ navigation }: any) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.titleContent}>
-        <Text style={styles.title}>Title and Description</Text>
-        <MaterialCommunityIcons
-          name="chevron-triple-right"
-          color={globalStyle.secondaryColor}
-          size={20}
-        />
-      </View>
-      <FlatList
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        data={data}
-        keyExtractor={(_, index) => "" + index}
-        renderItem={({ item, index }) => (
-          <Video
-            navigation={navigation}
-            index={index}
-            data={data}
-            item={item}
-          />
-        )}
-      />
-    </View>
+    <FlatList
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      data={data}
+      keyExtractor={(_, index) => "" + index}
+      renderItem={({ item, index }) => (
+        <Video navigation={navigation} index={index} data={data} item={item} />
+      )}
+    />
   );
 };
 
 export default index;
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-  },
-  titleContent: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginHorizontal: 15,
-  },
-  title: {
-    color: "#fff",
-    fontSize: 18,
-    paddingHorizontal: 10,
-    borderLeftColor: globalStyle.secondaryColor,
-    borderLeftWidth: 4,
-    textAlign: "center",
-  },
-});

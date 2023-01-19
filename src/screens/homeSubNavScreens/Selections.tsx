@@ -9,83 +9,133 @@ import FeedVideos from "../../components/feedsVidoes";
 import SixVideos from "../../components/sixVideos";
 import MultipleVideos from "../../components/multipleVideos";
 import { ScrollView } from "react-native-gesture-handler";
-import { Divider } from "@react-native-material/core";
+import TitleDescription from "../../components/TitleDescription";
+import DividerContainer from "../../components/DividerContainer";
 
 const Selections = ({ navigation }: any) => {
   return (
     <ScrollView>
       <Container>
         <Banner />
-        <HorizontalSwiperVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <SingleVideo navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FourVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FeedVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <SingleVideo navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FourVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FeedVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <SingleVideo navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FourVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FeedVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <SingleVideo navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FourVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <SingleVideo navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FourVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <SixVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <HorizontalSwiperVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <SingleVideo navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FourVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <SixVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FeedVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <SingleVideo navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FourVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FeedVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <SingleVideo navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <FourVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
-        <MultipleVideos navigation={navigation} />
-        <Divider color="#fff" style={styles.divider} />
+        <HorizontalSwiperVideosContainer navigation={navigation} />
+        <DividerContainer />
+        <SingleContainer navigation={navigation} />
+        <DividerContainer />
+        <FourContainer navigation={navigation} />
+        <DividerContainer />
+        <FeedContainer navigation={navigation} />
+        <DividerContainer />
+        <SingleContainer navigation={navigation} />
+        <DividerContainer />
+        <FourContainer navigation={navigation} />
+        <DividerContainer />
+        <FeedContainer navigation={navigation} />
+        <DividerContainer />
+        <SingleContainer navigation={navigation} />
+        <DividerContainer />
+        <FourContainer navigation={navigation} />
+        <DividerContainer />
+        <FeedContainer navigation={navigation} />
+        <DividerContainer />
+        <SingleContainer navigation={navigation} />
+        <DividerContainer />
+        <FourContainer navigation={navigation} />
+        <DividerContainer />
+        <SingleContainer navigation={navigation} />
+        <DividerContainer />
+        <FourContainer navigation={navigation} />
+        <DividerContainer />
+        <SixContainer navigation={navigation} />
+        <DividerContainer />
+        <HorizontalSwiperVideosContainer navigation={navigation} />
+        <DividerContainer />
+        <SingleContainer navigation={navigation} />
+        <DividerContainer />
+        <FourContainer navigation={navigation} />
+        <DividerContainer />
+        <SixContainer navigation={navigation} />
+        <DividerContainer />
+        <FeedContainer navigation={navigation} />
+        <DividerContainer />
+        <SingleContainer navigation={navigation} />
+        <DividerContainer />
+        <FourContainer navigation={navigation} />
+        <DividerContainer />
+        <FeedContainer navigation={navigation} />
+        <DividerContainer />
+        <SingleContainer navigation={navigation} />
+        <DividerContainer />
+        <FourContainer navigation={navigation} />
+        <DividerContainer />
+        <MultipleContainer navigation={navigation} />
+        <DividerContainer />
         <Text style={styles.bottomText}>人家也是有底线的啦！</Text>
       </Container>
     </ScrollView>
   );
 };
 
+const HorizontalSwiperVideosContainer = ({ navigation }: any) => {
+  return (
+    <View>
+      <TitleDescription />
+      <HorizontalSwiperVideos navigation={navigation} />
+    </View>
+  );
+};
+
+const SingleContainer = ({ navigation }: any) => {
+  return (
+    <View>
+      <TitleDescription />
+      <SingleVideo navigation={navigation} />
+    </View>
+  );
+};
+
+const FourContainer = ({ navigation }: any) => {
+  return (
+    <View>
+      <FourVideos navigation={navigation} />
+    </View>
+  );
+};
+
+const SixContainer = ({ navigation }: any) => {
+  return (
+    <View>
+      <TitleDescription />
+      <SixVideos navigation={navigation} />
+    </View>
+  );
+};
+
+const FeedContainer = ({ navigation }: any) => {
+  return (
+    <View>
+      <TitleDescription />
+      <FeedVideos navigation={navigation} />
+    </View>
+  );
+};
+
+const MultipleContainer = ({ navigation }: any) => {
+  return (
+    <View>
+      <TitleDescription />
+      <MultipleVideos navigation={navigation} />
+    </View>
+  );
+};
+
+export default Selections;
+
 const styles = StyleSheet.create({
-  divider: {
-    marginVertical: 10,
-    marginHorizontal: 15,
-  },
   bottomText: {
     textAlign: "center",
     color: "#fff",
-    paddingTop: 15,
-    paddingBottom: 30,
+    paddingTop: 10,
+    paddingBottom: 20,
     fontSize: 16,
   },
 });
-
-export default Selections;

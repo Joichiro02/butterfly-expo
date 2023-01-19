@@ -43,25 +43,15 @@ const { width } = Dimensions.get("window");
 
 const index = ({ navigation }: any) => {
   return (
-    <View>
-      <View style={styles.titleContent}>
-        <Text style={styles.title}>Title and Description</Text>
-        <MaterialCommunityIcons
-          name="chevron-triple-right"
-          color={globalStyle.secondaryColor}
-          size={20}
-        />
-      </View>
-      <FlatList
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        data={feeds}
-        renderItem={({ item, index }) => (
-          <VideoContent key={index} item={item} index={index} data={feeds} />
-        )}
-        keyExtractor={(_, index) => "" + index}
-      />
-    </View>
+    <FlatList
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      data={feeds}
+      renderItem={({ item, index }) => (
+        <VideoContent key={index} item={item} index={index} data={feeds} />
+      )}
+      keyExtractor={(_, index) => "" + index}
+    />
   );
 };
 
@@ -86,22 +76,7 @@ const VideoContent = ({ item, index, data }: any) => {
 export default index;
 
 const styles = StyleSheet.create({
-  titleContent: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginHorizontal: 15,
-  },
-  title: {
-    color: "#fff",
-    fontSize: 18,
-    paddingHorizontal: 10,
-    borderLeftColor: globalStyle.secondaryColor,
-    borderLeftWidth: 4,
-    textAlign: "center",
-  },
   feedContent: {
-    marginTop: 10,
     height: 250,
     width: width * 0.33,
     marginHorizontal: 3,
