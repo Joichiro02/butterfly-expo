@@ -5,6 +5,7 @@ import Container from "../../components/Container";
 import HorizontalSwiperVideos from "../../components/horizontalSwiperVideos";
 import SingleVideo from "../../components/singleVideo";
 import FourVideos from "../../components/fourVideos";
+import FeedVideos from "../../components/feedsVidoes";
 import { ScrollView } from "react-native-gesture-handler";
 import { Divider } from "@react-native-material/core";
 
@@ -18,6 +19,9 @@ const Selections = ({ navigation }: any) => {
         <SingleVideo navigation={navigation} />
         <Divider color="#fff" style={styles.divider} />
         <FourVideos navigation={navigation} />
+        <Divider color="#fff" style={styles.divider} />
+        <FeedVideos navigation={navigation} />
+        <Divider color="#fff" style={styles.divider} />
       </Container>
     </ScrollView>
   );

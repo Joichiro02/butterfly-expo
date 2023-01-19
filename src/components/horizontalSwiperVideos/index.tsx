@@ -39,10 +39,10 @@ const index = ({ navigation }: any) => {
         />
       </View>
       <FlatList
-        nestedScrollEnabled={true}
         horizontal
         showsHorizontalScrollIndicator={false}
         data={data}
+        keyExtractor={(_, index) => "" + index}
         renderItem={({ item, index }) => (
           <Video
             navigation={navigation}
