@@ -15,7 +15,8 @@ import Zocial from "react-native-vector-icons/Zocial";
 import React from "react";
 import Container from "../../../../components/Container";
 import frog from "../../../../images/frog.jpg";
-import { Video, AVPlaybackStatus } from "expo-av";
+import { Video, AVPlaybackStatus, ResizeMode } from "expo-av";
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 type Props = {};
 
@@ -24,6 +25,17 @@ const { width, height } = Dimensions.get("window");
 const ModelVideos = (props: Props) => {
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
+
+  function setOrientation() {
+    if (Dimensions.get('window').height > Dimensions.get('window').width) {
+      //Device is in portrait mode, rotate to landscape mode.
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
+    } else {
+      //Device is in landscape mode, rotate to portrait mode.
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+    }
+  }
+
   return (
     <Container>
       <View style={styles.videoContent}>
@@ -34,9 +46,10 @@ const ModelVideos = (props: Props) => {
             uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
           }}
           useNativeControls
-          resizeMode="contain"
+          resizeMode={ResizeMode.CONTAIN}
           isLooping
           onPlaybackStatusUpdate={(status) => setStatus(() => status)}
+          onFullscreenUpdate={setOrientation}
         />
         {/* <View style={styles.buttons}>
           <Button
