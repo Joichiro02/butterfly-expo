@@ -21,12 +21,14 @@ const { width } = Dimensions.get("window");
 
 const index = ({ navigation }: any) => {
   return (
-    <FlatList
-      numColumns={2}
-      data={images}
-      renderItem={({ item }) => <Video item={item} navigation={navigation} />}
-      keyExtractor={(item, index) => "" + index}
-    />
+    <View style={{ alignItems: "center", justifyContent: "center" }}>
+      <FlatList
+        numColumns={2}
+        data={images}
+        renderItem={({ item }) => <Video item={item} navigation={navigation} />}
+        keyExtractor={(item, index) => "" + index}
+      />
+    </View>
   );
 };
 
