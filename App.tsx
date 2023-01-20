@@ -17,12 +17,15 @@ import { NavigationContainer } from "@react-navigation/native";
 import { globalStyle } from "./src/styles";
 import { Image, StyleSheet, Text, View } from "react-native";
 import girl from "./src/images/girl.jpg";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { IconComponentProvider } from "@react-native-material/core";
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <IconComponentProvider IconComponent={MaterialCommunityIcons}>
+      <NavigationContainer>
       <Stack.Navigator
         initialRouteName="关注"
         screenOptions={{ animation: "slide_from_right" }}
@@ -65,7 +68,8 @@ const App = () => {
           })}
         />
       </Stack.Navigator>
-    </NavigationContainer>
+      </NavigationContainer>
+    </IconComponentProvider> 
   );
 };
 
