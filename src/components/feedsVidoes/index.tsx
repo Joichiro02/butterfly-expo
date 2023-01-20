@@ -49,16 +49,26 @@ const index = ({ navigation }: any) => {
       showsHorizontalScrollIndicator={false}
       data={feeds}
       renderItem={({ item, index }) => (
-        <VideoContent key={index} item={item} index={index} data={feeds} />
+        <VideoContent
+          key={index}
+          item={item}
+          index={index}
+          data={feeds}
+          navigation={navigation}
+        />
       )}
       keyExtractor={(_, index) => "" + index}
     />
   );
 };
 
-const VideoContent = ({ item, index, data }: any) => {
+const VideoContent = ({ item, index, data, navigation }: any) => {
+  const handlePress = () => {
+    navigation.navigate("shortVideo");
+  };
   return (
     <TouchableOpacity
+      onPress={handlePress}
       style={[
         styles.feedContent,
         index === 0 ? { marginLeft: 15 } : null,
