@@ -7,7 +7,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Octicons from "react-native-vector-icons/Octicons";
 import HomeScreen from "../screens/bottomMainNavigationScreens/HomeScreen";
 import VlogScreen from "../screens/bottomMainNavigationScreens/VlogScreen";
-import ChatScreen from "../screens/bottomMainNavigationScreens/AccountScreen";
+import ChatScreen from "../screens/bottomMainNavigationScreens/ChatScreen";
 import AccountScreen from "../screens/bottomMainNavigationScreens/AccountScreen";
 import { globalStyle } from "../styles/index";
 //@ts-ignore

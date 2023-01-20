@@ -2,10 +2,13 @@ import { StyleSheet, Text, View, Dimensions, Alert } from 'react-native'
 import React from 'react';
 import { ResizeMode, Video } from 'expo-av';
 import { Pressable, VStack } from "@react-native-material/core";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { IconComponentProvider, Icon } from "@react-native-material/core";
 import { Image } from 'react-native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import Ionicons from "react-native-vector-icons/Ionicons";
+import Octicons from "react-native-vector-icons/Octicons";
+import Feather from "react-native-vector-icons/Feather";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window")
 
@@ -38,7 +41,7 @@ const ShortVideo = (props: Props) => {
 				<Text style={[styles.userName, styles.iconText]}>@{props.userName}</Text>
 			</Pressable>
 			<Text style={styles.iconText}>{props.description}</Text>
-			<Pressable onPress={() => { Alert.alert("Search by Tag") }} pressEffect="none">
+				<Pressable onPress={() => { Alert.alert("Search by Tag") }} pressEffect="none">
 				<Text style={styles.iconText}>{props.tags}</Text>
 			</Pressable>
 			<Pressable onPress={() => { Alert.alert("Go to VIP purchase") }} pressEffect="none">
@@ -55,31 +58,31 @@ const ShortVideo = (props: Props) => {
 				</Pressable>
 				<View style={styles.followButton}>
 					<Pressable onPress={() => { Alert.alert("Follow User!") }} pressEffect="none">
-						<Icon name="plus" size={16} color="white" />
+						<Feather name="plus" color={"white"} size={16} />
 					</Pressable>
 				</View>
 			</View>
 			<View style={styles.verticalBarItem}>
 				<Pressable onPress={() => { Alert.alert("Like!") }} pressEffectColor='red' pressEffect='android-ripple'>
-					<Icon name="heart" size={40} color="white" />
+					<Ionicons name="heart" color={"white"} size={40} />
 				</Pressable>
 				<Text style={styles.iconText}>{props.likes}</Text>
 			</View>
 			<View style={styles.verticalBarItem}>
 				<Pressable onPress={() => { Alert.alert("Open Comment") }} pressEffectColor='black' pressEffect='android-ripple'>
-					<Icon name="comment" size={40} color="white" />
+					<MaterialCommunityIcons name="comment" color={"white"} size={40} />
 				</Pressable>
 				<Text style={styles.iconText}>{props.comments}</Text>
 			</View>
 			<View style={styles.verticalBarItem}>
 				<Pressable onPress={() => { Alert.alert("Add to Fave") }} pressEffectColor='yellow' pressEffect='android-ripple'>
-					<Icon name="star" size={40} color="white" />
+					<Ionicons name="star" color={"white"} size={40} />
 				</Pressable>
 				<Text style={styles.iconText}>Fave</Text>
 			</View>
 			<View style={styles.verticalBarItem}>
 				<Pressable onPress={() => { Alert.alert("Download Video") }} pressEffectColor='black' pressEffect='android-ripple'>
-					<Icon name="download" size={40} color="white" />
+					<MaterialCommunityIcons name="download" color={"white"} size={40} />
 				</Pressable>
 				<Text style={styles.iconText}>DL</Text>
 			</View>
