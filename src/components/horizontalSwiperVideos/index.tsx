@@ -32,6 +32,7 @@ const data = [
 const index = ({ navigation }: any) => {
   return (
     <FlatList
+      alwaysBounceHorizontal={true}
       horizontal
       showsHorizontalScrollIndicator={false}
       data={data}

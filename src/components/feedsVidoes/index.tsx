@@ -44,6 +44,7 @@ const { width } = Dimensions.get("window");
 const index = ({ navigation }: any) => {
   return (
     <FlatList
+      alwaysBounceHorizontal={true}
       horizontal
       showsHorizontalScrollIndicator={false}
       data={feeds}

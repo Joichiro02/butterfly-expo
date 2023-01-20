@@ -1,18 +1,12 @@
 import React from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Banner from "../../components/banner/Banner";
 import Container from "../../components/Container";
-//@ts-ignore
-import Carousel from "@vandrei977/react-native-snap-carousel";
-import CarouselCardItem from "../../components/banner/CarouselCardItem";
 import DividerContainer from "../../components/DividerContainer";
 import TitleDescription from "../../components/TitleDescription";
-import HorizontalSwiperVideos from "../../components/horizontalSwiperVideos";
 import SingleVideo from "../../components/singleVideo";
 import FourVideos from "../../components/fourVideos";
 import FeedVideos from "../../components/feedsVidoes";
-import SixVideos from "../../components/sixVideos";
-import MultipleVideos from "../../components/multipleVideos";
 import { ScrollView } from "react-native-gesture-handler";
 
 const Hot = ({ navigation }: any) => {
