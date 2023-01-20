@@ -3,7 +3,8 @@ import React from "react";
 import { globalStyle } from "../../styles";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Video from "./Video";
-import { FlatList } from "react-native-gesture-handler";
+//@ts-ignore
+// import Carousel from "@vandrei977/react-native-snap-carousel";
 import banner1 from "../../images/banner1.jpg";
 import banner2 from "../../images/banner2.jpg";
 import banner3 from "../../images/banner3.jpg";
@@ -13,6 +14,7 @@ import banner6 from "../../images/banner6.jpg";
 import banner7 from "../../images/banner7.jpg";
 import banner8 from "../../images/banner8.jpg";
 import banner9 from "../../images/banner9.jpg";
+import { FlatList } from "react-native-gesture-handler";
 
 const { width } = Dimensions.get("window");
 const data = [
@@ -38,6 +40,20 @@ const index = ({ navigation }: any) => {
         <Video navigation={navigation} index={index} data={data} item={item} />
       )}
     />
+    // <Carousel
+    //   data={data}
+    //   renderItem={({ item, index }: any) => (
+    //     <Video navigation={navigation} index={index} data={data} item={item} />
+    //   )}
+    //   sliderWidth={width}
+    //   itemWidth={width * 0.7}
+    //   useScrollView={true}
+    //   enableSnap={false}
+    //   horizontal={true}
+    //   inactiveSlideOpacity={1}
+    //   inactiveSlideScale={1}
+    //   activeSlideAlignment={"start"}
+    // />
   );
 };
 
