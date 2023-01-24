@@ -22,6 +22,7 @@ type Props = {
 	amountOfComments: number
 	userImage: string
 	isActive: boolean
+	activeVideoIndex: number
 }
 
 const commentData = [
@@ -54,6 +55,7 @@ const commentData = [
 const ShortVideo = (props: Props) => {
 	const [modalVisible, setModalVisible] = useState(false);
 	const tabBarHeight = useBottomTabBarHeight();
+	console.log("Active: " + props.isActive)
 	return (
 		<View style={[styles.container, { height: windowHeight - tabBarHeight }]}>
 			<Modal
