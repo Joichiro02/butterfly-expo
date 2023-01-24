@@ -6,6 +6,10 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ScrollView,
+  FlatList,
+  TextInput,
+  Alert
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -17,10 +21,100 @@ import Container from "../../../../components/Container";
 import frog from "../../../../images/frog.jpg";
 import { Video, AVPlaybackStatus, ResizeMode } from "expo-av";
 import * as ScreenOrientation from 'expo-screen-orientation';
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { globalStyle } from "../../../../styles/index";
+import FourVideos from "../../../../components/fourVideos/index"
+import { Pressable, VStack, Avatar, HStack, Divider, Wrap } from "@react-native-material/core";
 
 type Props = {};
 
 const { width, height } = Dimensions.get("window");
+
+// SUB TAB COMPONENTS (here for now for  testing purposes)
+const TAVideos = ({ navigation }: any) => {
+  
+  return (
+    <Container>
+      <FourVideos navigation={navigation} />
+      <FourVideos navigation={navigation} />
+    </Container>
+  )
+}
+
+const RecommendedVideos = ({ navigation }: any) => {
+
+  return (
+    <Container>
+      <FourVideos navigation={navigation} />
+      <FourVideos navigation={navigation} />
+    </Container>
+  )
+}
+
+const CommentSection = () => {
+  const commentData = [
+    {
+      userName: "first user Name",
+      comment: 'A very long comment First Comment Item ITEM ITEM ITEM ITEM  ITEMITEM LONG COMMMENT LONG COMMMENT LONG COMMMENT',
+    },
+    {
+      userName: "second user Name",
+      comment: 'Second Comment Item Another different comment abit longer',
+    },
+    {
+      userName: "third user Name",
+      comment: 'Third Comment Item comment but its shorter',
+    },
+    {
+      userName: "fourth user Name",
+      comment: 'Frouth Comment Item comment but its shorter',
+    },
+    {
+      userName: "fith user Name",
+      comment: 'fith Comment Item comment but its shorter',
+    },
+    {
+      userName: "six user Name",
+      comment: 'sixth Comment Item comment but its shorter',
+    },
+  ];
+
+  return (
+    <Container>
+      <View style={{paddingVertical: 24, paddingHorizontal: 12}}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={commentData}
+          ListFooterComponent={<Text style={styles.subText}>人家也是有底线的啦!</Text>}
+          // keyExtractor
+          renderItem={({ item }) =>
+            <VStack spacing={6}>
+              <HStack spacing={8}>
+                <Avatar label={item.userName} autoColor size={42} />
+                <VStack spacing={4} ph={6} style={{ flex: 1 }}>
+                  <Text style={{ color: "white" }}>{item.userName}</Text>
+                  <Text style={{ color: "white" }}>{item.comment}</Text>
+                </VStack>
+              </HStack>
+              <Divider color="gray" style={{ marginVertical: 6 }} />
+            </VStack>}
+        />
+        <TextInput
+          style={{ color: "white", backgroundColor: "#262632", position: "absolute", bottom: 0, padding: 12, width: width }}
+          cursorColor={"white"}
+          // value={"number"}
+          placeholder="发表评论"
+          placeholderTextColor="white"
+          keyboardType="default" />
+        <Pressable onPress={() => { Alert.alert("asd") }}>
+          <Text style={{ color: "white", position: "absolute", bottom: 0, right: 0 }}>确定</Text>
+        </Pressable>
+      </View>
+    </Container>
+  )
+}
+
+const SubMenuTab = createMaterialTopTabNavigator();
 
 const ModelVideos = (props: Props) => {
   const video = React.useRef(null);
@@ -62,7 +156,7 @@ const ModelVideos = (props: Props) => {
           />
         </View> */}
       </View>
-      <View>
+      <ScrollView stickyHeaderIndices={[5]} >
         <Text style={styles.title}>
           Components in the header need to interact with the screen component
         </Text>
@@ -138,7 +232,45 @@ const ModelVideos = (props: Props) => {
             <Text style={styles.text}>Share</Text>
           </View>
         </View>
-      </View>
+        <View style={styles.singleAds}>
+          <Text>Single Banner GIF Ads</Text>
+        </View>
+        <SubMenuTab.Navigator
+          style={{minHeight: 600, flex: 1}}
+          initialRouteName="TA的视频"
+          screenOptions={{
+            tabBarActiveTintColor: "#fff",
+            tabBarIndicatorStyle: { backgroundColor: globalStyle.secondaryColor },
+            tabBarInactiveTintColor: "#999",
+            tabBarStyle: {
+              backgroundColor: globalStyle.primaryColor,
+              height: 40,
+            },
+            tabBarAllowFontScaling: true,
+            tabBarLabelStyle: {
+              fontSize: 12,
+              fontWeight: "bold",
+            },
+            tabBarContentContainerStyle: {
+              alignItems: "center",
+            },
+            tabBarItemStyle: {
+              // margin: 0,
+              // padding: 0,
+              // width: 45,
+            },
+            // tabBarScrollEnabled: true,
+            animationEnabled: false,
+            tabBarShowLabel: true,
+            lazy: true,
+            swipeEnabled: true,
+          }}
+        >
+          <SubMenuTab.Screen name="TA的视频" component={TAVideos} />
+          <SubMenuTab.Screen name="更多推荐" component={RecommendedVideos} />
+          <SubMenuTab.Screen name="评论" component={CommentSection} />
+        </SubMenuTab.Navigator>
+      </ScrollView>
     </Container>
   );
 };
@@ -209,4 +341,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  singleAds: {
+    height: 100,
+    width: "100%",
+    backgroundColor: "tomato",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  tabHeader: {
+    color: "white"
+  },
+  subText: {
+    color: "#999",
+    textAlign: "center",
+    marginVertical: 6,
+    marginBottom: 48,
+  }
 });
