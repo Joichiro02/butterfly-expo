@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, Dimensions, Alert } from 'react-native'
-import React from 'react';
+import { StyleSheet, Text, View, Dimensions, Alert, Modal, FlatList, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
+import React, { useState } from 'react';
 import { ResizeMode, Video } from 'expo-av';
-import { Pressable, VStack } from "@react-native-material/core";
+import { Pressable, VStack, Avatar, HStack, Divider, Wrap } from "@react-native-material/core";
 import { IconComponentProvider, Icon } from "@react-native-material/core";
 import { Image } from 'react-native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
@@ -19,74 +19,146 @@ type Props = {
 	description: string
 	tags: string
 	likes: number
-	comments: number
+	amountOfComments: number
 	userImage: string
 	isActive: boolean
 }
 
+const commentData = [
+	{
+		userName: "first user Name",
+		comment: 'A very long comment First Comment Item ITEM ITEM ITEM ITEM  ITEMITEM LONG COMMMENT LONG COMMMENT LONG COMMMENT',
+	},
+	{
+		userName: "second user Name",
+		comment: 'Second Comment Item Another different comment abit longer',
+	},
+	{
+		userName: "third user Name",
+		comment: 'Third Comment Item comment but its shorter',
+	},
+	{
+		userName: "fourth user Name",
+		comment: 'Frouth Comment Item comment but its shorter',
+	},
+	{
+		userName: "fith user Name",
+		comment: 'fith Comment Item comment but its shorter',
+	},
+	{
+		userName: "six user Name",
+		comment: 'sixth Comment Item comment but its shorter',
+	},
+];
+
 const ShortVideo = (props: Props) => {
+	const [modalVisible, setModalVisible] = useState(false);
 	const tabBarHeight = useBottomTabBarHeight();
 	return (
 		<View style={[styles.container, { height: windowHeight - tabBarHeight }]}>
-		<Video
-			source={{ uri: props.uri }}
-			style={styles.video}
-			resizeMode={ResizeMode.STRETCH}
-			isLooping={true}
-			shouldPlay={props.isActive}
-			useNativeControls={false}
-		/>
-		<VStack spacing={8} style={styles.bottomSection}>
-			<Pressable onPress={() => { Alert.alert("Go to user Profile!") }} pressEffect="none">
-				<Text style={[styles.userName, styles.iconText]}>@{props.userName}</Text>
-			</Pressable>
-			<Text style={styles.iconText}>{props.description}</Text>
-				<Pressable onPress={() => { Alert.alert("Search by Tag") }} pressEffect="none">
-				<Text style={styles.iconText}>{props.tags}</Text>
-			</Pressable>
-			<Pressable onPress={() => { Alert.alert("Go to VIP purchase") }} pressEffect="none">
-				<Text style={styles.subscribe}>Subscription needed or gold coin</Text>
-			</Pressable>
-		</VStack>
-		<VStack spacing={8} style={styles.verticalBar}>
-			<View style={styles.verticalBarItem}>
-				<Pressable onPress={() => { Alert.alert("Go to user Profile!") }} pressEffect="none">
-					<Image
-						style={styles.userLogo}
-						source={{ uri: props.userImage }}
+			<Modal
+				statusBarTranslucent={true}
+				animationType="slide"
+				transparent={true}
+				visible={modalVisible}
+				onRequestClose={() => { setModalVisible(!modalVisible) }}>
+				<TouchableOpacity onPress={() => setModalVisible(!modalVisible)}  style={{
+					height: "50%",
+					marginBottom: "auto",
+					backgroundColor: '#191d26',
+					opacity: 0.5,
+					padding: 24,
+				}}>
+				</TouchableOpacity>
+				<View style={styles.modalContainer}>
+					<FlatList
+						showsVerticalScrollIndicator={false}
+						data={commentData}
+						ListFooterComponent={<Text style={styles.subText}>人家也是有底线的啦!</Text>}
+						// keyExtractor
+						renderItem={({ item }) =>
+						<VStack spacing={6}>
+							<HStack spacing={8}>
+								<Avatar label={item.userName} autoColor size={42} />
+								<VStack spacing={4} ph={6} style={{flex: 1}}>
+									<Text style={{ color: "white" }}>{item.userName}</Text>
+									<Text style={{ color: "white" }}>{item.comment}</Text>
+								</VStack>
+								</HStack>
+								<Divider color="gray" style={{marginVertical: 6}} />
+						</VStack>}
 					/>
-				</Pressable>
-				<View style={styles.followButton}>
-					<Pressable onPress={() => { Alert.alert("Follow User!") }} pressEffect="none">
-						<Feather name="plus" color={"white"} size={16} />
-					</Pressable>
+						<TextInput
+							style={{ color: "white", backgroundColor:"#262632", position:"absolute", bottom: 0, padding: 12, width: windowWidth}}
+							cursorColor={"white"}
+							// value={"number"}
+							placeholder="发表评论"
+							placeholderTextColor="white"
+							keyboardType="default" />
+						<Pressable onPress={()=>{Alert.alert("asd")}}>
+							<Text style={{ color: "white", position: "absolute", bottom: 0, right:0}}>确定</Text>
+						</Pressable>
 				</View>
-			</View>
-			<View style={styles.verticalBarItem}>
-				<Pressable onPress={() => { Alert.alert("Like!") }} pressEffectColor='red' pressEffect='android-ripple'>
-					<Ionicons name="heart" color={"white"} size={40} />
+			</Modal>
+			<Video
+				source={{ uri: props.uri }}
+				style={styles.video}
+				resizeMode={ResizeMode.STRETCH}
+				isLooping={true}
+				shouldPlay={props.isActive}
+				useNativeControls={false}
+			/>
+			<VStack spacing={8} style={styles.bottomSection}>
+				<Pressable onPress={() => { Alert.alert("Go to user Profile!") }} pressEffect="none">
+					<Text style={[styles.userName, styles.iconText]}>@{props.userName}</Text>
 				</Pressable>
-				<Text style={styles.iconText}>{props.likes}</Text>
-			</View>
-			<View style={styles.verticalBarItem}>
-				<Pressable onPress={() => { Alert.alert("Open Comment") }} pressEffectColor='black' pressEffect='android-ripple'>
-					<MaterialCommunityIcons name="comment" color={"white"} size={40} />
+				<Text style={styles.iconText}>{props.description}</Text>
+					<Pressable onPress={() => { Alert.alert("Search by Tag") }} pressEffect="none">
+					<Text style={styles.iconText}>{props.tags}</Text>
 				</Pressable>
-				<Text style={styles.iconText}>{props.comments}</Text>
-			</View>
-			<View style={styles.verticalBarItem}>
-				<Pressable onPress={() => { Alert.alert("Add to Fave") }} pressEffectColor='yellow' pressEffect='android-ripple'>
-					<Ionicons name="star" color={"white"} size={40} />
+				<Pressable onPress={() => { Alert.alert("Go to VIP purchase") }} pressEffect="none">
+					<Text style={styles.subscribe}>Subscription needed or gold coin</Text>
 				</Pressable>
-				<Text style={styles.iconText}>Fave</Text>
-			</View>
-			<View style={styles.verticalBarItem}>
-				<Pressable onPress={() => { Alert.alert("Download Video") }} pressEffectColor='black' pressEffect='android-ripple'>
-					<MaterialCommunityIcons name="download" color={"white"} size={40} />
-				</Pressable>
-				<Text style={styles.iconText}>DL</Text>
-			</View>
-		</VStack>
+			</VStack>
+			<VStack spacing={8} style={styles.verticalBar}>
+				<View style={styles.verticalBarItem}>
+					<Pressable onPress={() => { Alert.alert("Go to user Profile!") }} pressEffect="none">
+						<Image
+							style={styles.userLogo}
+							source={{ uri: props.userImage }}
+						/>
+					</Pressable>
+					<View style={styles.followButton}>
+						<Pressable onPress={() => { Alert.alert("Follow User!") }} pressEffect="none">
+							<Feather name="plus" color={"white"} size={16} />
+						</Pressable>
+					</View>
+				</View>
+				<View style={styles.verticalBarItem}>
+					<Pressable onPress={() => { Alert.alert("Like!") }} pressEffectColor='red' pressEffect='android-ripple'>
+						<Ionicons name="heart" color={"white"} size={40} />
+					</Pressable>
+					<Text style={styles.iconText}>{props.likes}</Text>
+				</View>
+				<View style={styles.verticalBarItem}>
+					<Pressable onPress={() => setModalVisible(!modalVisible)} pressEffectColor='black' pressEffect='android-ripple'>
+						<MaterialCommunityIcons name="comment" color={"white"} size={40} />
+					</Pressable>
+					<Text style={styles.iconText}>{props.amountOfComments}</Text>
+				</View>
+				<View style={styles.verticalBarItem}>
+					<Pressable onPress={() => { Alert.alert("Add to Fave") }} pressEffectColor='yellow' pressEffect='android-ripple'>
+						<Ionicons name="star" color={"white"} size={40} />
+					</Pressable>
+					<Text style={styles.iconText}>Fave</Text>
+				</View>
+				<View style={styles.verticalBarItem}>
+					<Pressable onPress={() => { Alert.alert("Download Video") }} pressEffectColor='black' pressEffect='android-ripple'>
+						<MaterialCommunityIcons name="download" color={"white"} size={40} />
+					</Pressable>
+					<Text style={styles.iconText}>DL</Text>
+				</View>
+			</VStack>
 		</View>
 	)
 }
@@ -97,6 +169,13 @@ const styles = StyleSheet.create({
 	container: {
 		width: windowWidth,
 		height: windowHeight
+	},
+	blackLayer: {
+		flex: 1,
+		backgroundColor: "black",
+		opacity: 0.5,
+		height: windowHeight,
+		zIndex: 2
 	},
 	video: {
 		position: "absolute",
@@ -153,5 +232,23 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		borderWidth: 2,
 		borderColor: "white",
+	},
+	modalContainer: {
+		height: "50%",
+		marginTop: "auto",
+		backgroundColor: '#191d26',
+		paddingVertical: 12,
+		paddingHorizontal: 24
+	},
+	textStyle: {
+		color: 'white',
+		fontWeight: 'bold',
+		textAlign: 'center',
+	},
+	subText: {
+		color: "#999",
+		textAlign: "center",
+		marginVertical: 6,
+		marginBottom: 48,
 	}
 })
