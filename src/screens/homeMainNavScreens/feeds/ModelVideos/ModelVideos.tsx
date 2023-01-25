@@ -85,6 +85,7 @@ const CommentSection = () => {
     <Container>
       <View style={{paddingVertical: 24, paddingHorizontal: 12}}>
         <FlatList
+          nestedScrollEnabled={true}
           showsVerticalScrollIndicator={false}
           data={commentData}
           ListFooterComponent={<Text style={styles.subText}>人家也是有底线的啦!</Text>}
@@ -139,7 +140,7 @@ const ModelVideos = (props: Props) => {
           ref={video}
           style={styles.video}
           source={{
-            uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+            uri: "https://moctobpltc-i.akamaihd.net/hls/live/571329/eight/playlist.m3u8",
           }}
           useNativeControls
           resizeMode={ResizeMode.CONTAIN}

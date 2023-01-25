@@ -6,7 +6,7 @@ import { IconComponentProvider, Icon } from "@react-native-material/core";
 import { Image } from 'react-native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Octicons from "react-native-vector-icons/Octicons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -17,6 +17,7 @@ type Props = {
 	uri: string
 	userName: string
 	description: string
+	isPortrait: boolean
 	tags: string
 	likes: number
 	amountOfComments: number
@@ -55,7 +56,6 @@ const commentData = [
 const ShortVideo = (props: Props) => {
 	const [modalVisible, setModalVisible] = useState(false);
 	const tabBarHeight = useBottomTabBarHeight();
-	console.log("Active: " + props.isActive)
 	return (
 		<View style={[styles.container, { height: windowHeight - tabBarHeight }]}>
 			<Modal
@@ -102,16 +102,21 @@ const ShortVideo = (props: Props) => {
 						</Pressable>
 				</View>
 			</Modal>
-			{props.isActive && 
+			{props.isActive &&
 				<Video
 					source={{ uri: props.uri }}
 					style={styles.video}
-					resizeMode={ResizeMode.STRETCH}
+					resizeMode={props.isPortrait ? ResizeMode.STRETCH : ResizeMode.CONTAIN}
 					isLooping={true}
 					shouldPlay={props.isActive}
 					useNativeControls={false}
 				/>
-			 }
+			}
+			{/* <View style={{ position: "absolute", bottom: (windowHeight / 2) - tabBarHeight, left: windowWidth / 2}}>
+				<Pressable  style={{padding: 12, borderRadius: 12}} pressEffect='android-ripple' pressEffectColor="black">
+					<FontAwesome name='play' size={80} color="white" />
+				</Pressable>
+			</View> */}
 			<VStack spacing={8} style={styles.bottomSection}>
 				<Pressable onPress={() => { Alert.alert("Go to user Profile!") }} pressEffect="none">
 					<Text style={[styles.userName, styles.iconText]}>@{props.userName}</Text>
