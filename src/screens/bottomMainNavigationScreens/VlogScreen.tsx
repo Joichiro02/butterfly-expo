@@ -150,6 +150,7 @@ const VlogScreen = (props: Props) => {
 			// estimatedItemSize={15}
 			data={data}
 			pagingEnabled
+			removeClippedSubviews={true}
 			renderItem={({ item, index }) =>
 				<ShortVideo
 					key={item.id}

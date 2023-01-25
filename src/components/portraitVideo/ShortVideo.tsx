@@ -102,14 +102,16 @@ const ShortVideo = (props: Props) => {
 						</Pressable>
 				</View>
 			</Modal>
-			<Video
-				source={{ uri: props.uri }}
-				style={styles.video}
-				resizeMode={ResizeMode.STRETCH}
-				isLooping={true}
-				shouldPlay={props.isActive}
-				useNativeControls={false}
-			/>
+			{props.isActive && 
+				<Video
+					source={{ uri: props.uri }}
+					style={styles.video}
+					resizeMode={ResizeMode.STRETCH}
+					isLooping={true}
+					shouldPlay={props.isActive}
+					useNativeControls={false}
+				/>
+			 }
 			<VStack spacing={8} style={styles.bottomSection}>
 				<Pressable onPress={() => { Alert.alert("Go to user Profile!") }} pressEffect="none">
 					<Text style={[styles.userName, styles.iconText]}>@{props.userName}</Text>
@@ -170,7 +172,8 @@ export default ShortVideo
 const styles = StyleSheet.create({
 	container: {
 		width: windowWidth,
-		height: windowHeight
+		height: windowHeight,
+		backgroundColor: "#191d26",
 	},
 	blackLayer: {
 		flex: 1,

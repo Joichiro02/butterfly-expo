@@ -38,13 +38,13 @@ const HomeTopMainNavigation = () => {
             padding: 0,
           },
           animationEnabled: false,
-        }}
+        }} 
       >
         <MainTab.Screen name="关注" component={Feeds} />
         <MainTab.Screen name="首页" component={Home} />
         <MainTab.Screen name="动态" component={Moment} />
-        <MainTab.Screen name="约会" component={Photography} />
-        <MainTab.Screen name="写真" component={Date} />
+        <MainTab.Screen name="约会" component={Date} />
+        <MainTab.Screen name="写真" component={Photography} />
       </MainTab.Navigator>
       <View style={styles.searchContainer}>
         <Ionicons name="search" size={20} color="#fff" />

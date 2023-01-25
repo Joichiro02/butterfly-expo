@@ -34,10 +34,12 @@ const { width, height } = Dimensions.get("window");
 const TAVideos = ({ navigation }: any) => {
   
   return (
-    <Container>
-      <FourVideos navigation={navigation} />
-      <FourVideos navigation={navigation} />
-    </Container>
+    <ScrollView nestedScrollEnabled={true}>
+      <Container>
+        <FourVideos navigation={navigation} />
+        <FourVideos navigation={navigation} />
+      </Container>
+    </ScrollView>
   )
 }
 
@@ -156,7 +158,7 @@ const ModelVideos = (props: Props) => {
           />
         </View> */}
       </View>
-      <ScrollView stickyHeaderIndices={[5]} >
+      <ScrollView stickyHeaderIndices={[5]} nestedScrollEnabled={true} >
         <Text style={styles.title}>
           Components in the header need to interact with the screen component
         </Text>
@@ -236,7 +238,7 @@ const ModelVideos = (props: Props) => {
           <Text>Single Banner GIF Ads</Text>
         </View>
         <SubMenuTab.Navigator
-          style={{minHeight: 600, flex: 1}}
+          style={{minHeight: 900, flex: 1}}
           initialRouteName="TA的视频"
           screenOptions={{
             tabBarActiveTintColor: "#fff",
